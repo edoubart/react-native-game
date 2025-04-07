@@ -1,16 +1,26 @@
 // NPM Packages
+import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
+
+// Custom Modules
+import {
+  StartGame,
+} from './../../screens';
 
 // Styles
-import styles from './styles.js';
+import styles from './styles';
+
+const StartGameScreen = StartGame;
 
 function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello World!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <LinearGradient
+      colors={['#4e0329', '#ddb52f']}
+      style={styles.app}
+    >
+      <StartGameScreen />
+    </LinearGradient>
   );
 }
 
