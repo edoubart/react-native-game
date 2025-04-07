@@ -1,7 +1,6 @@
 // NPM Packages
 import { LinearGradient } from 'expo-linear-gradient';
-import { StatusBar } from 'expo-status-bar';
-import { Text } from 'react-native';
+import { ImageBackground } from 'react-native';
 
 // Custom Modules
 import {
@@ -11,7 +10,13 @@ import {
 // Styles
 import styles from './styles';
 
+// Screens
 const StartGameScreen = StartGame;
+
+// Constants
+const IMAGE_BACKGROUND_IMAGE_STYLE = '';
+const IMAGE_BACKGROUND_PATH = './../../assets/images/background.png';
+const IMAGE_BACKGROUND_RESIZE_MODE = 'cover';
 
 function App() {
   return (
@@ -19,7 +24,14 @@ function App() {
       colors={['#4e0329', '#ddb52f']}
       style={styles.app}
     >
-      <StartGameScreen />
+      <ImageBackground
+        imageStyle={styles.imageBackground}
+        resizeMode={IMAGE_BACKGROUND_RESIZE_MODE}
+        source={require(IMAGE_BACKGROUND_PATH)}
+        style={styles.app}
+      >
+        <StartGameScreen />
+      </ImageBackground>
     </LinearGradient>
   );
 }
