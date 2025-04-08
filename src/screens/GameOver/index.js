@@ -3,6 +3,7 @@ import { Image, Text, View } from 'react-native';
 
 // Custom Modules
 import {
+  PrimaryButton,
   Title,
 } from './../../components/ui';
 
@@ -22,7 +23,13 @@ function GameOver() {
           style={styles.image}
         />
       </View>
-      <Text>Your phone needed X rounds to guess the number Y.</Text>
+      <Text style={styles.summary}>
+        Your phone needed <Text style={styles.highlight}>X</Text>{ ' ' }
+         rounds to guess the number <Text style={styles.highlight}>Y</Text>.
+      </Text>
+      <PrimaryButton>
+        Start New Game
+      </PrimaryButton>
     </View>
   );
 }

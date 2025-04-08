@@ -20,9 +20,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
+  highlight: {
+    color: colors.primary500,
+    fontFamily: 'open-sans-bold',
+  },
   image: {
     height: '100%',
     width: '100%',
+  },
+  summary: {
+    fontFamily: 'open-sans',
+    fontSize: 24,
+    marginBottom: 24,
+    textAlign: 'center',
   },
 });
 
