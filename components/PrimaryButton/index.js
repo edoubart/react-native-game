@@ -9,10 +9,8 @@ import colors from './../../constants/colors';
 
 function PrimaryButton(props) {
   // Handlers
-  function handlePress(something) {
-    console.log('something: ', something);
-
-    props.handlers.confirmNumber();
+  function handlePress() {
+    props.handlers.press();
   }
 
   return (

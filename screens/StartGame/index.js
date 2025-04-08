@@ -96,7 +96,7 @@ function StartGame(props) {
         <View style={styles.button}>
           <PrimaryButton
             handlers={{
-              confirmNumber: handleConfirmNumber,
+              press: handleConfirmNumber,
             }}
           >
             { PRIMARY_BUTTON_CONFIRM_LABEL }

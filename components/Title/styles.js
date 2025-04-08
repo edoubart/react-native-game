@@ -6,9 +6,9 @@ import colors from './../../constants/colors';
 
 const styles = StyleSheet.create({
   title: {
-    borderColor: colors.accent500,
+    borderColor: 'white',
     borderWidth: 2,
-    color: colors.accent500,
+    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
