@@ -22,7 +22,7 @@ const TEXT_INPUT_AUTO_CORRECT = false;
 const TEXT_INPUT_KEYBOARD_TYPE = 'number-pad';
 const TEXT_INPUT_MAX_LENGTH = 2;
 
-function StartGame() {
+function StartGame(props) {
   // State
   const [ enteredNumber, setEnteredNumber ] = useState('');
 
@@ -35,7 +35,7 @@ function StartGame() {
     const chosenNumber = parseInt(enteredNumber);
 
     if (validateNumber(chosenNumber)) {
-      console.log('Valid number!');
+      props.handlers.startGame(enteredNumber);
     }
     else {
       Alert.alert(

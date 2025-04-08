@@ -1,5 +1,5 @@
 // NPM Packages
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
 // Styles
 import styles from './styles';
@@ -7,6 +7,9 @@ import styles from './styles';
 function Game() {
   return (
     <View>
+      <Text>
+        Let's go!
+      </Text>
     </View>
   );
 }
