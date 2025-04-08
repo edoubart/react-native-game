@@ -1,6 +1,9 @@
 // NPM Packages
 import { StyleSheet } from 'react-native';
 
+// Colors
+import colors from './../../constants/colors';
+
 const styles = StyleSheet.create({
   button: {
     flex: 1,
@@ -10,7 +13,7 @@ const styles = StyleSheet.create({
   },
   startGame: {
     alignItems: 'center',
-    backgroundColor: '#3b021f',
+    backgroundColor: colors.primary800,
     borderRadius: 8,
     elevation: 4, // Shadow (Android)
     justifyContent: 'center',
@@ -27,9 +30,9 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
   },
   textInput: {
-    borderBottomColor: '#ddb52f',
+    borderBottomColor: colors.accent500,
     borderBottomWidth: 2,
-    color: '#ddb52f',
+    color: colors.accent500,
     fontSize: 32,
     fontWeight: 'bold',
     height: 100,

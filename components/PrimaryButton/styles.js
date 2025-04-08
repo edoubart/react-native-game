@@ -1,9 +1,12 @@
 // NPM Packages
 import { StyleSheet } from 'react-native';
 
+// Colors
+import colors from './../../constants/colors';
+
 const styles = StyleSheet.create({
   pressable: {
-    backgroundColor: '#72063c',
+    backgroundColor: colors.primary500,
     elevation: 2, // Shadow (Android)
     paddingHorizontal: 16,
     paddingVertical: 8,

@@ -1,7 +1,7 @@
 // NPM Packages
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ImageBackground } from 'react-native';
+import { ImageBackground, SafeAreaView } from 'react-native';
 
 // Custom Modules
 import {
@@ -11,6 +11,9 @@ import {
 
 // Styles
 import styles from './styles';
+
+// Colors
+import colors from './../../constants/colors';
 
 // Screens
 const GameScreen = Game;
@@ -36,7 +39,11 @@ function App() {
 
     if (userNumber) {
       result = (
-        <GameScreen />
+        <GameScreen
+          data={{
+            userNumber,
+          }}
+        />
       );
     }
     else {
@@ -54,7 +61,7 @@ function App() {
 
   return (
     <LinearGradient
-      colors={['#4e0329', '#ddb52f']}
+      colors={[colors.primary700, colors.accent500]}
       style={styles.app}
     >
       <ImageBackground
@@ -63,7 +70,9 @@ function App() {
         source={require(IMAGE_BACKGROUND_PATH)}
         style={styles.app}
       >
-        { renderScreen() }
+        <SafeAreaView style={styles.app}>
+          { renderScreen() }
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );

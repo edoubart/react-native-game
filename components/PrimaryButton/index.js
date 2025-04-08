@@ -4,6 +4,9 @@ import { Text, Pressable, View } from 'react-native';
 // Styles
 import styles from './styles';
 
+// Colors
+import colors from './../../constants/colors';
+
 function PrimaryButton(props) {
   // Handlers
   function handlePress(something) {
@@ -16,7 +19,7 @@ function PrimaryButton(props) {
     <View style={styles.primaryButton}>
       <Pressable
         android_ripple={{
-          color: '#640233',
+          color: colors.primary500,
         }}
         onPress={handlePress}
         style={({ pressed }) => {
