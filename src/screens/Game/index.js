@@ -1,4 +1,5 @@
 // NPM Packages
+import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Alert, Text, View } from 'react-native';
 
@@ -24,6 +25,12 @@ const ALERT_DESCRIPTION = "You know that this is wrong ...";
 const ALERT_TITLE = "Don't lie!";
 const DIRECTION_HIGHER = 'higher';
 const DIRECTION_LOWER = DIRECTION_LOWER;
+const ICON_HIGHER_COLOR = 'white';
+const ICON_HIGHER_NAME = 'add';
+const ICON_HIGHER_SIZE = 24;
+const ICON_LOWER_COLOR = 'white';
+const ICON_LOWER_NAME = 'remove';
+const ICON_LOWER_SIZE = 24;
 const INSTRUCTIONS_TEXT = "Higher or lower?";
 const NUMBER_MAX = 100;
 const NUMBER_MIN = 1;
@@ -127,22 +134,36 @@ function Game(props) {
       <Title>{ TITLE_LABEL }</Title>
       <NumberBox>{ game.currentGuess }</NumberBox>
       <Card>
-        <InstructionText>{ INSTRUCTIONS_TEXT }</InstructionText>
+        <InstructionText style={styles.instructionText}>
+          { INSTRUCTIONS_TEXT }
+        </InstructionText>
         <View style={styles.buttons}>
-          <PrimaryButton
-            handlers={{
-              press: handleGuessHigher,
-            }}
-          >
-            <Text>+</Text>
-          </PrimaryButton>
-          <PrimaryButton
-            handlers={{
-              press: handleGuessLower,
-            }}
-          >
-            <Text>-</Text>
-          </PrimaryButton>
+          <View style={styles.button}>
+            <PrimaryButton
+              handlers={{
+                press: handleGuessHigher,
+              }}
+            >
+              <Ionicons
+                color={ICON_HIGHER_COLOR}
+                name={ICON_HIGHER_NAME}
+                size={ICON_HIGHER_SIZE}
+              />
+            </PrimaryButton>
+          </View>
+          <View style={styles.button}>
+            <PrimaryButton
+              handlers={{
+                press: handleGuessLower,
+              }}
+            >
+              <Ionicons
+                color={ICON_LOWER_COLOR}
+                name={ICON_LOWER_NAME}
+                size={ICON_LOWER_SIZE}
+              />
+            </PrimaryButton>
+          </View>
         </View>
       </Card>
       <View>LOG ROUNDS</View>

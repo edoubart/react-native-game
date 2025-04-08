@@ -1,6 +1,8 @@
 // NPM Packages
-import { useState } from 'react';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useState } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
 
 // Custom Modules
@@ -22,6 +24,8 @@ const GameOverScreen = GameOver;
 const StartGameScreen = StartGame;
 
 // Constants
+const FONT_BOLD_PATH = './../../../assets/fonts/OpenSans-Regular.ttf';
+const FONT_PATH = './../../../assets/fonts/OpenSans-Bold.ttf';
 const IMAGE_BACKGROUND_IMAGE_STYLE = '';
 const IMAGE_BACKGROUND_PATH = './../../../assets/images/background.png';
 const IMAGE_BACKGROUND_RESIZE_MODE = 'cover';
@@ -30,6 +34,16 @@ function App() {
   // State
   const [ userNumber, setUserNumber ] = useState(null);
   const [ gameOver, setGameOver ] = useState(true);
+
+  // Fonts
+  const [ fontsLoaded ] = useFonts({
+    'open-sans': require(FONT_PATH),
+    'open-sans-bold': require(FONT_BOLD_PATH),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   // Handlers
   function handleEndGame() {

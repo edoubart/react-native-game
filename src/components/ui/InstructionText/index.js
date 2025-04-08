@@ -6,7 +6,7 @@ import styles from './styles';
 
 function InstructionText(props) {
   return (
-    <Text style={styles.instructionText}>
+    <Text style={[styles.instructionText, props.style]}>
       { props.children }
     </Text>
   );
