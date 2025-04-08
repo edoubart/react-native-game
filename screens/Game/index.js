@@ -1,5 +1,5 @@
 // NPM Packages
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, Text, View } from 'react-native';
 
 // Custom Modules
@@ -25,15 +25,27 @@ const NUMBER_MIN = 1;
 const TITLE_LABEL = "Opponent's Guess";
 
 function Game(props) {
-  // Variables
-  let maxBoundary = NUMBER_MAX;
-  let minBoundary = NUMBER_MIN;
-
   // State
   const initialGuess = generateRandomBetween(
-    minBoundary, maxBoundary, props.data.userNumber
+    NUMBER_MIN, NUMBER_MAX, props.data.userNumber
   );
-  const [ currentGuess, setCurrentGuess ] = useState(initialGuess);
+  const [ game, setGame ] = useState({
+    currentGuess: initialGuess,
+    minBoundary: NUMBER_MIN,
+    maxBoundary: NUMBER_MAX,
+  });
+
+  // Hooks
+  useEffect(() => {
+    if (game.currentGuess == props.data.userNumber) {
+      props.handlers.endGame();
+    }
+  }, [
+    game,
+    game.currentGuess,
+    props.data,
+    props.data.userNumber,
+  ]);
 
   // Handlers
   function handleGuessHigher() {
@@ -45,17 +57,32 @@ function Game(props) {
   }
 
   function handleNextGuess(direction) {
-    if (validateDirection(direction, currentGuess, props.data.userNumber)) {
+    let newMinBoundary = game.minBoundary;
+    let newMaxBoundary = game.maxBoundary;
+
+    const validDirection = validateDirection(
+      direction, game.currentGuess, props.data.userNumber
+    );
+    if (validDirection) {
       if (direction === DIRECTION_LOWER) {
-        maxBoundary = currentGuess;
+        newMaxBoundary = game.currentGuess;
       }
       else if (direction === DIRECTION_HIGHER) {
-        minBoundary = currentGuess + 1;
+        newMinBoundary = game.currentGuess + 1;
       }
 
-      let nextGuess = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
+      let nextGuess = generateRandomBetween(
+        newMinBoundary,
+        newMaxBoundary,
+        game.currentGuess
+      );
 
-      setCurrentGuess(nextGuess);
+      setGame({
+        ...game,
+        currentGuess: nextGuess,
+        minBoundary: newMinBoundary,
+        maxBoundary: newMaxBoundary,
+      });
     }
     else {
       Alert.alert(
@@ -93,7 +120,7 @@ function Game(props) {
   return (
     <View style={styles.game}>
       <Title>{ TITLE_LABEL }</Title>
-      <NumberBox>{ currentGuess }</NumberBox>
+      <NumberBox>{ game.currentGuess }</NumberBox>
       <View>
         <Text>
           Higher or lower?
@@ -104,14 +131,14 @@ function Game(props) {
               press: handleGuessHigher,
             }}
           >
-            +
+            <Text>+</Text>
           </PrimaryButton>
           <PrimaryButton
             handlers={{
               press: handleGuessLower,
             }}
           >
-            -
+            <Text>-</Text>
           </PrimaryButton>
         </View>
       </View>

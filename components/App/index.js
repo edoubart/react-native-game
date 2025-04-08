@@ -6,6 +6,7 @@ import { ImageBackground, SafeAreaView } from 'react-native';
 // Custom Modules
 import {
   Game,
+  GameOver,
   StartGame,
 } from './../../screens';
 
@@ -17,6 +18,7 @@ import colors from './../../constants/colors';
 
 // Screens
 const GameScreen = Game;
+const GameOverScreen = GameOver;
 const StartGameScreen = StartGame;
 
 // Constants
@@ -27,33 +29,64 @@ const IMAGE_BACKGROUND_RESIZE_MODE = 'cover';
 function App() {
   // State
   const [ userNumber, setUserNumber ] = useState(null);
+  const [ gameOver, setGameOver ] = useState(true);
 
   // Handlers
+  function handleEndGame() {
+    setGameOver(true);
+  }
+
   function handleStartGame(pickedNumber) {
     setUserNumber(pickedNumber);
+    setGameOver(false);
   }
 
   // Renderers
   function renderScreen() {
     let result;
 
-    if (userNumber) {
-      result = (
-        <GameScreen
-          data={{
-            userNumber,
-          }}
-        />
-      );
+    if (gameOver) {
+      if (userNumber) {
+        result = (
+          <GameOverScreen
+            data={{
+              userNumber,
+            }}
+          />
+        );
+      }
+      else {
+        result = (
+          <StartGameScreen
+            handlers={{
+              startGame: handleStartGame,
+            }}
+          />
+        );
+      }
     }
     else {
-      result = (
-        <StartGameScreen
-          handlers={{
-            startGame: handleStartGame,
-          }}
-        />
-      );
+      if (userNumber) {
+        result = (
+          <GameScreen
+            data={{
+              userNumber,
+            }}
+            handlers={{
+              endGame: handleEndGame,
+            }}
+          />
+        );
+      }
+      else {
+        result = (
+          <StartGameScreen
+            handlers={{
+              startGame: handleStartGame,
+            }}
+          />
+        );
+      }
     }
 
     return result;
