@@ -6,8 +6,10 @@ import styles from './styles';
 
 function PrimaryButton(props) {
   // Handlers
-  function handlePress() {
-    console.log('Here!');
+  function handlePress(something) {
+    console.log('something: ', something);
+
+    props.handlers.confirmNumber();
   }
 
   return (
