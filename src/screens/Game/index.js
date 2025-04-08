@@ -41,11 +41,12 @@ function Game(props) {
   const initialGuess = generateRandomBetween(
     NUMBER_MIN, NUMBER_MAX, props.data.userNumber
   );
-  const [ game, setGame ] = useState({
+  const initialGame = {
     currentGuess: initialGuess,
     minBoundary: NUMBER_MIN,
     maxBoundary: NUMBER_MAX,
-  });
+  };
+  const [ game, setGame ] = useState(initialGame);
 
   // Hooks
   useEffect(() => {
@@ -58,6 +59,10 @@ function Game(props) {
     props.data,
     props.data.userNumber,
   ]);
+
+  useEffect(() => {
+    setGame(initialGame);
+  }, []);
 
   // Handlers
   function handleGuessHigher() {
@@ -95,6 +100,8 @@ function Game(props) {
         minBoundary: newMinBoundary,
         maxBoundary: newMaxBoundary,
       });
+
+      props.handlers.incrementRoundCount();
     }
     else {
       Alert.alert(
@@ -166,7 +173,8 @@ function Game(props) {
           </View>
         </View>
       </Card>
-      <View>LOG ROUNDS</View>
+      <View>
+      </View>
     </View>
   );
 }

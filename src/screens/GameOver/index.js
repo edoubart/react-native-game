@@ -13,7 +13,7 @@ import styles from './styles';
 // Constants
 const IMAGE_FOREGROUND_PATH = './../../../assets/images/success.png';
 
-function GameOver() {
+function GameOver(props) {
   return (
     <View style={styles.gameOver}>
       <Title>GAME OVER</Title>
@@ -24,10 +24,20 @@ function GameOver() {
         />
       </View>
       <Text style={styles.summary}>
-        Your phone needed <Text style={styles.highlight}>X</Text>{ ' ' }
-         rounds to guess the number <Text style={styles.highlight}>Y</Text>.
+        Your phone needed { '' }
+        <Text style={styles.highlight}>
+          { props.data.roundCount }
+        </Text> { '' }
+        rounds to guess the number { '' }
+        <Text style={styles.highlight}>
+          { props.data.userNumber }
+        </Text>.
       </Text>
-      <PrimaryButton>
+      <PrimaryButton
+        handlers={{
+          press: props.handlers.startGame,
+        }}
+      >
         Start New Game
       </PrimaryButton>
     </View>

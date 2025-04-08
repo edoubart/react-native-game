@@ -34,6 +34,8 @@ function App() {
   // State
   const [ userNumber, setUserNumber ] = useState(null);
   const [ gameOver, setGameOver ] = useState(true);
+  const [ roundCount, setRoundCount ] = useState(0);
+  console.log('roundCount: ', roundCount);
 
   // Fonts
   const [ fontsLoaded ] = useFonts({
@@ -50,9 +52,14 @@ function App() {
     setGameOver(true);
   }
 
+  function handleIncrementRoundCount() {
+    setRoundCount(roundCount + 1);
+  }
+
   function handleStartGame(pickedNumber) {
     setUserNumber(pickedNumber);
     setGameOver(false);
+    setRoundCount(0);
   }
 
   // Renderers
@@ -64,7 +71,11 @@ function App() {
         result = (
           <GameOverScreen
             data={{
+              roundCount,
               userNumber,
+            }}
+            handlers={{
+              startGame: handleStartGame,
             }}
           />
         );
@@ -88,6 +99,7 @@ function App() {
             }}
             handlers={{
               endGame: handleEndGame,
+              incrementRoundCount: handleIncrementRoundCount,
             }}
           />
         );
