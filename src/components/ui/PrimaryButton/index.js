@@ -5,7 +5,7 @@ import { Text, Pressable, View } from 'react-native';
 import styles from './styles';
 
 // Colors
-import colors from './../../constants/colors';
+import colors from './../../../constants/colors';
 
 function PrimaryButton(props) {
   // Handlers

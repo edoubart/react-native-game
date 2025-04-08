@@ -23,7 +23,7 @@ const StartGameScreen = StartGame;
 
 // Constants
 const IMAGE_BACKGROUND_IMAGE_STYLE = '';
-const IMAGE_BACKGROUND_PATH = './../../assets/images/background.png';
+const IMAGE_BACKGROUND_PATH = './../../../assets/images/background.png';
 const IMAGE_BACKGROUND_RESIZE_MODE = 'cover';
 
 function App() {

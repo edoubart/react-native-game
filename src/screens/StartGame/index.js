@@ -1,9 +1,19 @@
 // NPM Packages
 import { useState } from 'react';
-import { Alert, TextInput, View } from 'react-native';
+import {
+  Alert,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 // Custom Modules
-import PrimaryButton from './../../components/PrimaryButton';
+import {
+  Card,
+  InstructionText,
+  PrimaryButton,
+  Title,
+} from './../../components/ui';
 
 // Styles
 import styles from './styles';
@@ -15,6 +25,7 @@ const NUMBER_MAX = 99;
 const NUMBER_MIN = 0;
 const ALERT_DESCRIPTION = "Number has to be a number between " + (NUMBER_MIN + 1) + " and " + NUMBER_MAX + ".";
 const ALERT_TITLE = "Invalid number!";
+const INSTRUCTIONS_TEXT = "Enter a Number";
 const PRIMARY_BUTTON_CONFIRM_LABEL = "Confirm";
 const PRIMARY_BUTTON_RESET_LABEL = "Reset";
 const TEXT_INPUT_AUTO_CAPITALIZE = 'none';
@@ -74,35 +85,39 @@ function StartGame(props) {
 
   return (
     <View style={styles.startGame}>
-      <TextInput
-        autoCapitalize={TEXT_INPUT_AUTO_CAPITALIZE}
-        autoCorrect={TEXT_INPUT_AUTO_CORRECT}
-        keyboardType={TEXT_INPUT_KEYBOARD_TYPE}
-        maxLength={TEXT_INPUT_MAX_LENGTH}
-        onChangeText={handleChangeNumber}
-        style={styles.textInput}
-        value={enteredNumber}
-      />
-      <View style={styles.buttons}>
-        <View style={styles.button}>
-          <PrimaryButton
-            handlers={{
-              resetNumber: handleResetNumber,
-            }}
-          >
-            { PRIMARY_BUTTON_RESET_LABEL }
-          </PrimaryButton>
+      <Title>Guess My Number</Title>
+      <Card>
+        <InstructionText>{ INSTRUCTIONS_TEXT }</InstructionText>
+        <TextInput
+          autoCapitalize={TEXT_INPUT_AUTO_CAPITALIZE}
+          autoCorrect={TEXT_INPUT_AUTO_CORRECT}
+          keyboardType={TEXT_INPUT_KEYBOARD_TYPE}
+          maxLength={TEXT_INPUT_MAX_LENGTH}
+          onChangeText={handleChangeNumber}
+          style={styles.textInput}
+          value={enteredNumber}
+        />
+        <View style={styles.buttons}>
+          <View style={styles.button}>
+            <PrimaryButton
+              handlers={{
+                resetNumber: handleResetNumber,
+              }}
+            >
+              { PRIMARY_BUTTON_RESET_LABEL }
+            </PrimaryButton>
+          </View>
+          <View style={styles.button}>
+            <PrimaryButton
+              handlers={{
+                press: handleConfirmNumber,
+              }}
+            >
+              { PRIMARY_BUTTON_CONFIRM_LABEL }
+            </PrimaryButton>
+          </View>
         </View>
-        <View style={styles.button}>
-          <PrimaryButton
-            handlers={{
-              press: handleConfirmNumber,
-            }}
-          >
-            { PRIMARY_BUTTON_CONFIRM_LABEL }
-          </PrimaryButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }

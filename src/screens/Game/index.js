@@ -3,9 +3,13 @@ import { useEffect, useState } from 'react';
 import { Alert, Text, View } from 'react-native';
 
 // Custom Modules
-import NumberBox from './../../components/NumberBox';
-import PrimaryButton from './../../components/PrimaryButton';
-import Title from './../../components/Title';
+import {
+  Card,
+  InstructionText,
+  NumberBox,
+  PrimaryButton,
+  Title,
+} from './../../components/ui';
 
 // Styles
 import styles from './styles';
@@ -20,6 +24,7 @@ const ALERT_DESCRIPTION = "You know that this is wrong ...";
 const ALERT_TITLE = "Don't lie!";
 const DIRECTION_HIGHER = 'higher';
 const DIRECTION_LOWER = DIRECTION_LOWER;
+const INSTRUCTIONS_TEXT = "Higher or lower?";
 const NUMBER_MAX = 100;
 const NUMBER_MIN = 1;
 const TITLE_LABEL = "Opponent's Guess";
@@ -121,10 +126,8 @@ function Game(props) {
     <View style={styles.game}>
       <Title>{ TITLE_LABEL }</Title>
       <NumberBox>{ game.currentGuess }</NumberBox>
-      <View>
-        <Text>
-          Higher or lower?
-        </Text>
+      <Card>
+        <InstructionText>{ INSTRUCTIONS_TEXT }</InstructionText>
         <View style={styles.buttons}>
           <PrimaryButton
             handlers={{
@@ -141,7 +144,7 @@ function Game(props) {
             <Text>-</Text>
           </PrimaryButton>
         </View>
-      </View>
+      </Card>
       <View>LOG ROUNDS</View>
     </View>
   );

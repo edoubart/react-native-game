@@ -2,7 +2,7 @@
 import { StyleSheet } from 'react-native';
 
 // Colors
-import colors from './../../constants/colors';
+import colors from './../../../constants/colors';
 
 const styles = StyleSheet.create({
   title: {
