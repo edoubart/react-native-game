@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import {
   Alert,
+  KeyboardAvoidingView,
+  ScrollView,
   Text,
   TextInput,
   View,
@@ -90,41 +92,45 @@ function StartGame(props) {
   const marginTop = height < 400 ? 30 : 100;
 
   return (
-    <View style={{ ...styles.startGame, marginTop }}>
-      <Title>Guess My Number</Title>
-      <Card>
-        <InstructionText>{ INSTRUCTIONS_TEXT }</InstructionText>
-        <TextInput
-          autoCapitalize={TEXT_INPUT_AUTO_CAPITALIZE}
-          autoCorrect={TEXT_INPUT_AUTO_CORRECT}
-          keyboardType={TEXT_INPUT_KEYBOARD_TYPE}
-          maxLength={TEXT_INPUT_MAX_LENGTH}
-          onChangeText={handleChangeNumber}
-          style={styles.textInput}
-          value={enteredNumber}
-        />
-        <View style={styles.buttons}>
-          <View style={styles.button}>
-            <PrimaryButton
-              handlers={{
-                resetNumber: handleResetNumber,
-              }}
-            >
-              { PRIMARY_BUTTON_RESET_LABEL }
-            </PrimaryButton>
-          </View>
-          <View style={styles.button}>
-            <PrimaryButton
-              handlers={{
-                press: handleConfirmNumber,
-              }}
-            >
-              { PRIMARY_BUTTON_CONFIRM_LABEL }
-            </PrimaryButton>
-          </View>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView behavior="position" style={styles.screen}>
+        <View style={{ ...styles.startGame, marginTop }}>
+          <Title>Guess My Number</Title>
+          <Card>
+            <InstructionText>{ INSTRUCTIONS_TEXT }</InstructionText>
+            <TextInput
+              autoCapitalize={TEXT_INPUT_AUTO_CAPITALIZE}
+              autoCorrect={TEXT_INPUT_AUTO_CORRECT}
+              keyboardType={TEXT_INPUT_KEYBOARD_TYPE}
+              maxLength={TEXT_INPUT_MAX_LENGTH}
+              onChangeText={handleChangeNumber}
+              style={styles.textInput}
+              value={enteredNumber}
+            />
+            <View style={styles.buttons}>
+              <View style={styles.button}>
+                <PrimaryButton
+                  handlers={{
+                    resetNumber: handleResetNumber,
+                  }}
+                >
+                  { PRIMARY_BUTTON_RESET_LABEL }
+                </PrimaryButton>
+              </View>
+              <View style={styles.button}>
+                <PrimaryButton
+                  handlers={{
+                    press: handleConfirmNumber,
+                  }}
+                >
+                  { PRIMARY_BUTTON_CONFIRM_LABEL }
+                </PrimaryButton>
+              </View>
+            </View>
+          </Card>
         </View>
-      </Card>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 

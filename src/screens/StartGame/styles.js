@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
   },
+  screen: {
+    flex: 1,
+  },
   startGame: {
     alignItems: 'center',
     flex: 1,
