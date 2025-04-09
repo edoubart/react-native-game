@@ -1,4 +1,5 @@
 // NPM Packages
+import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -119,21 +120,24 @@ function App() {
   }
 
   return (
-    <LinearGradient
-      colors={[colors.primary700, colors.accent500]}
-      style={styles.app}
-    >
-      <ImageBackground
-        imageStyle={styles.imageBackground}
-        resizeMode={IMAGE_BACKGROUND_RESIZE_MODE}
-        source={require(IMAGE_BACKGROUND_PATH)}
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[colors.primary700, colors.accent500]}
         style={styles.app}
       >
-        <SafeAreaView style={styles.app}>
-          { renderScreen() }
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          imageStyle={styles.imageBackground}
+          resizeMode={IMAGE_BACKGROUND_RESIZE_MODE}
+          source={require(IMAGE_BACKGROUND_PATH)}
+          style={styles.app}
+        >
+          <SafeAreaView style={styles.app}>
+            { renderScreen() }
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
