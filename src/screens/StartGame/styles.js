@@ -1,8 +1,13 @@
 // NPM Packages
-import { StyleSheet } from 'react-native';
+import { /*Dimensions,*/ StyleSheet } from 'react-native';
 
 // Colors
 import colors from './../../constants/colors';
+
+// Dimensions
+//const deviceHeight = Dimensions
+//  .get('window')
+//  .height;
 
 const styles = StyleSheet.create({
   button: {
@@ -12,9 +17,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   startGame: {
-    alignItem: 'center',
+    alignItems: 'center',
     flex: 1,
-    marginTop: 100,
+    //marginTop: deviceHeight < 380 ? 30 : 100,
   },
   textInput: {
     borderBottomColor: colors.accent500,

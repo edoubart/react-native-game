@@ -9,8 +9,10 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-bold',
     fontSize: 24,
     //fontWeight: 'bold',
-    textAlign: 'center',
+    maxWidth: '80%', // Max width (if there is not enough space)
     padding: 12,
+    textAlign: 'center',
+    width: 300, // Default width (if there is enough space)
   },
 });
 

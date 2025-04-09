@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   View,
+  useWindowDimensions,
 } from 'react-native';
 
 // Custom Modules
@@ -36,6 +37,9 @@ const TEXT_INPUT_MAX_LENGTH = 2;
 function StartGame(props) {
   // State
   const [ enteredNumber, setEnteredNumber ] = useState('');
+
+  // Dimensions
+  const { height, width } = useWindowDimensions();
 
   // Handlers
   function handleChangeNumber(enteredNumber) {
@@ -83,8 +87,10 @@ function StartGame(props) {
     return result;
   }
 
+  const marginTop = height < 400 ? 30 : 100;
+
   return (
-    <View style={styles.startGame}>
+    <View style={{ ...styles.startGame, marginTop }}>
       <Title>Guess My Number</Title>
       <Card>
         <InstructionText>{ INSTRUCTIONS_TEXT }</InstructionText>

@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   game: {
+    alignItems: 'center',
     flex: 1,
     padding: 24,
   },

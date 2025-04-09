@@ -1,8 +1,13 @@
 // NPM Packages
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 // Colors
 import colors from './../../../constants/colors';
+
+// Dimensions
+const deviceWidth = Dimensions
+  .get('window')
+  .width;
 
 const styles = StyleSheet.create({
   card: {
@@ -12,7 +17,7 @@ const styles = StyleSheet.create({
     elevation: 4, // Shadow (Android)
     justifyContent: 'center',
     marginHorizontal: 24,
-    marginTop: 36,
+    marginTop: deviceWidth < 380 ? 18 : 36,
     padding: 16,
     // Shadow (iOS)
     shadowColor: 'black',

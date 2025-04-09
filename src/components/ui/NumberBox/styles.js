@@ -1,8 +1,13 @@
 // NPM Packages
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 // Colors
 import colors from './../../../constants/colors';
+
+// Dimensions
+const deviceWidth = Dimensions
+  .get('window')
+  .width;
 
 const styles = StyleSheet.create({
   numberBox: {
@@ -11,13 +16,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 4,
     justifyContent: 'center',
-    margin: 24,
-    padding: 24,
+    margin: deviceWidth < 380 ? 12 : 24,
+    padding: deviceWidth < 380 ? 12 : 24,
   },
   text: {
     color: colors.accent500,
     fontFamily: 'open-sans-bold',
-    fontSize: 36,
+    fontSize: deviceWidth < 380 ? 28 : 36,
     //fontWeight: 'bold',
   },
 });

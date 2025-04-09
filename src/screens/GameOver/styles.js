@@ -1,18 +1,23 @@
 // NPM Packages
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 // Colors
 import colors from './../../constants/colors';
 
+// Dimensions
+const deviceWidth = Dimensions
+  .get('window')
+  .width;
+
 const styles = StyleSheet.create({
   foreground: {
     borderColor: colors.primary800,
-    borderRadius: 150,
+    borderRadius: deviceWidth < 380 ? 75 : 150,
     borderWidth: 3,
-    height: 300,
+    height: deviceWidth < 380 ? 150 : 300,
     overflow: 'hidden',
     margin: 36,
-    width: 300,
+    width: deviceWidth < 380 ? 150 : 300,
   },
   gameOver: {
     alignItems: 'center',
