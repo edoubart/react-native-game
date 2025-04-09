@@ -35,7 +35,6 @@ function App() {
   const [ userNumber, setUserNumber ] = useState(null);
   const [ gameOver, setGameOver ] = useState(true);
   const [ roundCount, setRoundCount ] = useState(0);
-  console.log('roundCount: ', roundCount);
 
   // Fonts
   const [ fontsLoaded ] = useFonts({
@@ -48,8 +47,9 @@ function App() {
   }
 
   // Handlers
-  function handleEndGame() {
+  function handleEndGame(numberOfRound) {
     setGameOver(true);
+    setRoundCount(numberOfRound);
   }
 
   function handleIncrementRoundCount() {

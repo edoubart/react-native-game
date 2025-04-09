@@ -1,7 +1,12 @@
 // NPM Packages
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { Alert, Text, View } from 'react-native';
+import {
+  Alert,
+  FlatList,
+  Text,
+  View,
+} from 'react-native';
 
 // Custom Modules
 import {
@@ -11,6 +16,7 @@ import {
   PrimaryButton,
   Title,
 } from './../../components/ui';
+import GuessLogItem from './GuessLogItem';
 
 // Styles
 import styles from './styles';
@@ -45,13 +51,14 @@ function Game(props) {
     currentGuess: initialGuess,
     minBoundary: NUMBER_MIN,
     maxBoundary: NUMBER_MAX,
+    guessRounds: [initialGuess],
   };
   const [ game, setGame ] = useState(initialGame);
 
   // Hooks
   useEffect(() => {
     if (game.currentGuess == props.data.userNumber) {
-      props.handlers.endGame();
+      props.handlers.endGame(game.guessRounds.length);
     }
   }, [
     game,
@@ -99,6 +106,7 @@ function Game(props) {
         currentGuess: nextGuess,
         minBoundary: newMinBoundary,
         maxBoundary: newMaxBoundary,
+        guessRounds: [ ...game.guessRounds, nextGuess ],
       });
 
       props.handlers.incrementRoundCount();
@@ -134,6 +142,18 @@ function Game(props) {
     }
 
     return result;
+  }
+
+  // Renderers
+  function renderGuessRound(itemData) {
+    return (
+      <GuessLogItem
+        data={{
+          roundNumber: game.guessRounds.length - itemData.index,
+          guess: itemData.item,
+        }}
+      />
+    );
   }
 
   return (
@@ -173,7 +193,12 @@ function Game(props) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.logs}>
+        <FlatList
+          data={game.guessRounds.reverse()}
+          keyExtractor={item => item}
+          renderItem={renderGuessRound}
+        />
       </View>
     </View>
   );

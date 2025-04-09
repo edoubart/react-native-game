@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
   instructionText: {
     marginBottom: 12,
   },
+  logs: {
+    flex: 1,
+    padding: 16,
+  },
 });
 
 export default styles;
