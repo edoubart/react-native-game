@@ -6,6 +6,7 @@ import {
   FlatList,
   Text,
   View,
+  useWindowDimensions,
 } from 'react-native';
 
 // Custom Modules
@@ -54,6 +55,9 @@ function Game(props) {
     guessRounds: [initialGuess],
   };
   const [ game, setGame ] = useState(initialGame);
+
+  // Dimensions
+  const { height, width } = useWindowDimensions();
 
   // Hooks
   useEffect(() => {
@@ -156,28 +160,10 @@ function Game(props) {
     );
   }
 
-  return (
-    <View style={styles.game}>
-      <Title>{ TITLE_LABEL }</Title>
-      <NumberBox>{ game.currentGuess }</NumberBox>
-      <Card>
-        <InstructionText style={styles.instructionText}>
-          { INSTRUCTIONS_TEXT }
-        </InstructionText>
-        <View style={styles.buttons}>
-          <View style={styles.button}>
-            <PrimaryButton
-              handlers={{
-                press: handleGuessHigher,
-              }}
-            >
-              <Ionicons
-                color={ICON_HIGHER_COLOR}
-                name={ICON_HIGHER_NAME}
-                size={ICON_HIGHER_SIZE}
-              />
-            </PrimaryButton>
-          </View>
+  function renderLandscape() {
+    return (
+      <>
+        <View style={styles.buttonsLandscape}>
           <View style={styles.button}>
             <PrimaryButton
               handlers={{
@@ -191,8 +177,70 @@ function Game(props) {
               />
             </PrimaryButton>
           </View>
+          <NumberBox>{ game.currentGuess }</NumberBox>
+          <View style={styles.button}>
+            <PrimaryButton
+              handlers={{
+                press: handleGuessHigher,
+              }}
+            >
+              <Ionicons
+                color={ICON_HIGHER_COLOR}
+                name={ICON_HIGHER_NAME}
+                size={ICON_HIGHER_SIZE}
+              />
+            </PrimaryButton>
+          </View>
         </View>
-      </Card>
+      </>
+    );
+  }
+
+  function renderPortrait() {
+    return (
+      <>
+        <NumberBox>{ game.currentGuess }</NumberBox>
+        <Card>
+          <InstructionText style={styles.instructionText}>
+            { INSTRUCTIONS_TEXT }
+          </InstructionText>
+          <View style={styles.buttonsPortrait}>
+            <View style={styles.button}>
+              <PrimaryButton
+                handlers={{
+                  press: handleGuessLower,
+                }}
+              >
+                <Ionicons
+                  color={ICON_LOWER_COLOR}
+                  name={ICON_LOWER_NAME}
+                  size={ICON_LOWER_SIZE}
+                />
+              </PrimaryButton>
+            </View>
+            <View style={styles.button}>
+              <PrimaryButton
+                handlers={{
+                  press: handleGuessHigher,
+                }}
+              >
+                <Ionicons
+                  color={ICON_HIGHER_COLOR}
+                  name={ICON_HIGHER_NAME}
+                  size={ICON_HIGHER_SIZE}
+                />
+              </PrimaryButton>
+            </View>
+          </View>
+        </Card>
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.game}>
+      <Title>{ TITLE_LABEL }</Title>
+      { (width < 500) ? renderPortrait() : renderLandscape() }
       <View style={styles.logs}>
         <FlatList
           data={game.guessRounds.reverse()}

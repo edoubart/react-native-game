@@ -5,7 +5,11 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
   },
-  buttons: {
+  buttonsLandscape: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  buttonsPortrait: {
     flexDirection: 'row',
   },
   game: {
